@@ -11,10 +11,13 @@ MSG = "FNA100 all arguments in ** are identifiers"
 
 
 class Visitor(ast.NodeVisitor):
+    """Visitor for checking for use of named arguments."""
+
     def __init__(self) -> None:
         self.problems: List[Tuple[int, int]] = []
 
     def visit_Call(self, node: ast.Call) -> None:
+        """Visit a Call node."""
         for keyword in node.keywords:
             value = keyword.value
             if (
@@ -30,6 +33,8 @@ class Visitor(ast.NodeVisitor):
 
 
 class Plugin:
+    """Flake8 plugin checking for named arguments in **kwargs."""
+
     name = __name__
     version = importlib_metadata.version(__name__)
 
@@ -37,6 +42,7 @@ class Plugin:
         self._tree = tree
 
     def run(self) -> Generator[Tuple[int, int, str, Type[Any]], None, None]:
+        """Run the plugin."""
         visitor = Visitor()
         visitor.visit(self._tree)
         for line, col in visitor.problems:
