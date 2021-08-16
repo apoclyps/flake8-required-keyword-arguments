@@ -10,14 +10,14 @@ def _results(s: str) -> Set[str]:
     return {f"{line}:{col + 1} {msg}" for line, col, msg, _ in plugin.run()}
 
 
-def test_trvial_case():
+def test_trvial_case() -> None:
     assert _results("") == set()
 
 
-def test_incorrect_named_arguments():
+def test_incorrect_named_arguments() -> None:
     ret = _results("f(**{'foo': 'bar'})")
     assert ret == {"1:1 FNA100 all arguments in ** are identifiers"}
 
 
-def test_allowed_splat_arguments():
+def test_allowed_splat_arguments() -> None:
     assert _results("f(**{'foo-bar': 'baz'})") == set()
