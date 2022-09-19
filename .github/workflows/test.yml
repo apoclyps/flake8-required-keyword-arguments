@@ -43,7 +43,7 @@ jobs:
       - name: Typecheck with mypy
         run: mypy . --ignore-missing-imports --disallow-untyped-defs
       - name: Upload code coverage
-        uses: codecov/codecov-action@v2.0.2
+        uses: codecov/codecov-action@v3.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
