@@ -6,7 +6,7 @@ codespell==2.1.0
 covdefaults==1.2.0
 flake8==3.9.2
 freezegun==1.1.0
-ipdb==0.13.9
+ipdb==0.13.13
 isort==5.9.3
 mypy==0.910
 pre-commit==2.14.0
